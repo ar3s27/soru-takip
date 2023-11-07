@@ -70,9 +70,25 @@ namespace SoruTakip
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            int matValue = int.Parse(matTxt.Text);
-            int geoValue = int.Parse(geoTxt.Text);
-            int turValue = int.Parse(turTxt.Text);
+            int matValue = 0;
+            int geoValue = 0;
+            int turValue = 0;
+
+            if (!string.IsNullOrWhiteSpace(matTxt.Text))
+            {
+                 matValue = int.Parse(matTxt.Text);
+            }
+
+            if (!string.IsNullOrWhiteSpace(geoTxt.Text))
+            {
+                 geoValue = int.Parse(geoTxt.Text);
+            }
+
+            if (!string.IsNullOrWhiteSpace(turTxt.Text))
+            {
+                 turValue = int.Parse(turTxt.Text);
+            }
+
 
             int currentMatValue = GetCurrentDatabaseValue("Matematik");
             int currentGeoValue = GetCurrentDatabaseValue("Geometri");

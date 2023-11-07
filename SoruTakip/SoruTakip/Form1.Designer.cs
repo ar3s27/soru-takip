@@ -51,7 +51,7 @@
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(414, 0);
             this.chart1.Name = "chart1";
-            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
             this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Empty,
         System.Drawing.Color.Empty,
@@ -118,11 +118,12 @@
             // 
             // BtnUpdate
             // 
-            this.BtnUpdate.Location = new System.Drawing.Point(151, 205);
+            this.BtnUpdate.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BtnUpdate.Location = new System.Drawing.Point(282, 64);
             this.BtnUpdate.Name = "BtnUpdate";
-            this.BtnUpdate.Size = new System.Drawing.Size(75, 77);
+            this.BtnUpdate.Size = new System.Drawing.Size(97, 107);
             this.BtnUpdate.TabIndex = 8;
-            this.BtnUpdate.Text = "Güncelle";
+            this.BtnUpdate.Text = "Veriyi Güncelle";
             this.BtnUpdate.UseVisualStyleBackColor = true;
             this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
@@ -140,7 +141,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chart1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "DGS Soru Takip";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
