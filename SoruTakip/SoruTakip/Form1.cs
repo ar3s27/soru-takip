@@ -97,20 +97,27 @@ namespace SoruTakip
             if (hit.PointIndex >= 0 && hit.Series != null)
             {
                 DataPoint dataPoint = chart.Series[hit.Series.Name].Points[hit.PointIndex];
-                string value = $"{dataPoint.YValues[0]:N2}"; // Gerekirse değeri istediğiniz gibi biçimlendirin
-                string seriesName = chart.Series[hit.Series.Name].Name;
+                string seriesName = chart.Series[hit.Series.Name].Points[hit.PointIndex].AxisLabel;
+                string value = $"{dataPoint.YValues[0]:N0}";
                 string tooltipText = $"{seriesName}: {value}";
 
-                // ToolTip'i görüntüle
-                chart.Series[hit.Series.Name].ToolTip = tooltipText;
+                chart.Series[hit.Series.Name].Points[hit.PointIndex].Label = seriesName;
+                chart.Series[hit.Series.Name].Points[hit.PointIndex].LabelToolTip = tooltipText;
             }
             else
             {
-                // ToolTip'i temizle
-                ToolTip tooltip = new ToolTip();
-                tooltip.RemoveAll();
+                // Eğer çubuğun üzerinden çıkıldıysa, etiketi temizleyin
+                foreach (var series in chart.Series)
+                {
+                    foreach (var point in series.Points)
+                    {
+                        point.Label = string.Empty;
+                        point.LabelToolTip = string.Empty;
+                    }
+                }
             }
         }
+
         private void FormatChartValues()
         {
             // Grafikteki her veri noktasını döngü ile işleyin
