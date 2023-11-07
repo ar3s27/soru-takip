@@ -97,7 +97,7 @@ namespace SoruTakip
             if (hit.PointIndex >= 0 && hit.Series != null)
             {
                 DataPoint dataPoint = chart.Series[hit.Series.Name].Points[hit.PointIndex];
-                string value = $"{dataPoint.YValues[0]:N2}"; // Gerekirse değeri istediğiniz gibi biçimlendirin
+                string value = dataPoint.YValues[0].ToString("0").Trim(); 
                 string seriesName = chart.Series[hit.Series.Name].Points[hit.PointIndex].AxisLabel;
                 string tooltipText = $"{seriesName}: {value}";
 
