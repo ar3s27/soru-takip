@@ -58,6 +58,15 @@ namespace SoruTakip
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Matematik serisi için renk atama
+            chart1.Series["Matematik"].Color = Color.Blue;
+
+            // Geometri serisi için renk atama
+            chart1.Series["Geometri"].Color = Color.Red;
+
+            // Türkçe serisi için renk atama
+            chart1.Series["Turkce"].Color = Color.Green;
+
             baglanti.Open();
             SqlCommand komut = new SqlCommand("Select Dersler,CozulenSoru from DersSoru", baglanti);
             SqlDataReader oku = komut.ExecuteReader();
@@ -65,6 +74,8 @@ namespace SoruTakip
             {
                 chart1.Series["Ders"].Points.AddXY(oku[0].ToString(), oku[1].ToString());
             }
+
+
             baglanti.Close();
         }
 

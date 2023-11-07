@@ -39,6 +39,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnUpdate = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,6 +58,7 @@
         System.Drawing.Color.Empty,
         System.Drawing.Color.Empty};
             series1.ChartArea = "ChartArea1";
+            series1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             series1.Legend = "Legend1";
             series1.Name = "Ders";
             this.chart1.Series.Add(series1);
@@ -159,6 +161,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnUpdate;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
