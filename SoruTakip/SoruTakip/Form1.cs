@@ -97,45 +97,19 @@ namespace SoruTakip
             if (hit.PointIndex >= 0 && hit.Series != null)
             {
                 DataPoint dataPoint = chart.Series[hit.Series.Name].Points[hit.PointIndex];
+                string value = $"{dataPoint.YValues[0]:N2}"; // Gerekirse değeri istediğiniz gibi biçimlendirin
                 string seriesName = chart.Series[hit.Series.Name].Points[hit.PointIndex].AxisLabel;
-                string value = $"{dataPoint.YValues[0]:N0}";
                 string tooltipText = $"{seriesName}: {value}";
 
-                chart.Series[hit.Series.Name].Points[hit.PointIndex].Label = seriesName;
-                chart.Series[hit.Series.Name].Points[hit.PointIndex].LabelToolTip = tooltipText;
+                // ToolTip'i görüntüle
+                chart.Series[hit.Series.Name].ToolTip = tooltipText;
             }
             else
             {
-                // Eğer çubuğun üzerinden çıkıldıysa, etiketi temizleyin
-                foreach (var series in chart.Series)
-                {
-                    foreach (var point in series.Points)
-                    {
-                        point.Label = string.Empty;
-                        point.LabelToolTip = string.Empty;
-                    }
-                }
+                // ToolTip'i temizle
+                ToolTip tooltip = new ToolTip();
+                tooltip.RemoveAll();
             }
         }
-
-        private void FormatChartValues()
-        {
-            // Grafikteki her veri noktasını döngü ile işleyin
-            foreach (var series in chart1.Series)
-            {
-                foreach (var point in series.Points)
-                {
-                    // Her veri noktasının değerini alın
-                    double value = point.YValues[0];
-
-                    // Veriyi istediğiniz biçimde formatlayın, örneğin virgül ve ondalık haneleri kaldırın
-                    string formattedValue = value.ToString("0");
-
-                    // Veriyi formatlanmış değerle güncelleyin
-                    point.Label = formattedValue;
-                }
-            }
-        }
-
     }
 }
