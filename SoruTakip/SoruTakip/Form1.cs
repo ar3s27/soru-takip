@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms.DataVisualization.Charting;
+
 
 namespace SoruTakip
 {
@@ -32,7 +34,6 @@ namespace SoruTakip
         {
             baglanti.Open();
 
-            // Update the database using parameterized queries
             SqlCommand updateCommand = new SqlCommand("UPDATE DersSoru SET CozulenSoru = @value WHERE Dersler = @ders", baglanti);
             updateCommand.Parameters.AddWithValue("@value", value);
             updateCommand.Parameters.AddWithValue("@ders", ders);
@@ -86,6 +87,29 @@ namespace SoruTakip
             UpdateDatabase("Turkce", updatedTurValue);
 
             RefreshChart();
+        }
+
+        private void chart1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Chart chart = (Chart)sender;
+            HitTestResult hit = chart.HitTest(e.X, e.Y);
+
+            if (hit.PointIndex >= 0 && hit.Series != null)
+            {
+                DataPoint dataPoint = chart.Series[hit.Series.Name].Points[hit.PointIndex];
+                string value = $"{dataPoint.YValues[0]:N2}"; // Gerekirse değeri istediğiniz gibi biçimlendirin
+                string seriesName = chart.Series[hit.Series.Name].Name;
+                string tooltipText = $"{seriesName}: {value}";
+
+                // ToolTip'i görüntüle
+                chart.Series[hit.Series.Name].ToolTip = tooltipText;
+            }
+            else
+            {
+                // ToolTip'i temizle
+                ToolTip tooltip = new ToolTip();
+                tooltip.RemoveAll();
+            }
         }
     }
 }
