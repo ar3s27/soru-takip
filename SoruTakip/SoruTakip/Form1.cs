@@ -41,8 +41,6 @@ namespace SoruTakip
             baglanti.Close();
         }
 
-
-
         private void RefreshChart()
         {
             chart1.Series["Ders"].Points.Clear(); // Clear existing data
@@ -71,27 +69,22 @@ namespace SoruTakip
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            // Get the values from textboxes
             int matValue = int.Parse(matTxt.Text);
             int geoValue = int.Parse(geoTxt.Text);
             int turValue = int.Parse(turTxt.Text);
 
-            // Get the current values from the database
             int currentMatValue = GetCurrentDatabaseValue("Matematik");
             int currentGeoValue = GetCurrentDatabaseValue("Geometri");
             int currentTurValue = GetCurrentDatabaseValue("Turkce");
 
-            // Calculate the new values by adding the entered values to the current values
             int updatedMatValue = currentMatValue + matValue;
             int updatedGeoValue = currentGeoValue + geoValue;
             int updatedTurValue = currentTurValue + turValue;
 
-            // Update the database with the new values
             UpdateDatabase("Matematik", updatedMatValue);
             UpdateDatabase("Geometri", updatedGeoValue);
             UpdateDatabase("Turkce", updatedTurValue);
 
-            // Refresh the chart
             RefreshChart();
         }
     }
