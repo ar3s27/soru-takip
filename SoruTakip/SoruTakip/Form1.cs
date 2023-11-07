@@ -111,5 +111,24 @@ namespace SoruTakip
                 tooltip.RemoveAll();
             }
         }
+        private void FormatChartValues()
+        {
+            // Grafikteki her veri noktasını döngü ile işleyin
+            foreach (var series in chart1.Series)
+            {
+                foreach (var point in series.Points)
+                {
+                    // Her veri noktasının değerini alın
+                    double value = point.YValues[0];
+
+                    // Veriyi istediğiniz biçimde formatlayın, örneğin virgül ve ondalık haneleri kaldırın
+                    string formattedValue = value.ToString("0");
+
+                    // Veriyi formatlanmış değerle güncelleyin
+                    point.Label = formattedValue;
+                }
+            }
+        }
+
     }
 }
