@@ -58,27 +58,15 @@ namespace SoruTakip
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Veritabanından verileri çekerek her ders için ayrı bir seri oluşturalım
             baglanti.Open();
-            SqlCommand komut = new SqlCommand("Select Dersler, CozulenSoru from DersSoru", baglanti);
+            SqlCommand komut = new SqlCommand("Select Dersler,CozulenSoru from DersSoru", baglanti);
             SqlDataReader oku = komut.ExecuteReader();
             while (oku.Read())
             {
-                string ders = oku[0].ToString();
-                int cozulenSoru = Convert.ToInt32(oku[1]);
-
-                Series dersSeries = new Series(ders); // Her ders için yeni bir Series oluştur
-                dersSeries.Points.AddXY(ders, cozulenSoru); // Seriye verileri ekle
-
-                // Rastgele renk atamak için Color struct'ından bir renk oluşturabilirsiniz.
-                Random rastgele = new Random();
-                dersSeries.Color = Color.FromArgb(rastgele.Next(256), rastgele.Next(256), rastgele.Next(256));
-
-                chart1.Series.Add(dersSeries); // Seriyi grafik nesnesine ekle
+                chart1.Series["Ders"].Points.AddXY(oku[0].ToString(), oku[1].ToString());
             }
             baglanti.Close();
         }
-
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
